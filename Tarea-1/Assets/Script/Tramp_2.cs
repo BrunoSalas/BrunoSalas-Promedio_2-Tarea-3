@@ -5,7 +5,8 @@ using UnityEngine;
 using System;
 
 public class Tramp_2 : MonoBehaviour
-{ public LayerMask player;
+{ 
+public LayerMask player;
 public float timeShoot;
 public float maxTime;
  
@@ -21,21 +22,21 @@ void Update()
 {
     RaycastHit hit;
     timeShoot += Time.deltaTime;
-    if (Physics.Raycast(transform.position, transform.up, out hit, 10f, player))
+    if (Physics.Raycast(transform.position, transform.forward, out hit, 10f, player))
     {
-        float a = timeShoot;
-        if (a > maxTime)
+        if (timeShoot > maxTime)
         {
             Action<GameObject> bulletPrefab = Shoot;
             bulletPrefab(bullet);
             bulletPrefab.Invoke(bullet);
-            a = 0;
+            timeShoot = 0;
+            maxTime--;
         }
     }
 }
 private void Shoot(GameObject prefab)
 {
     Instantiate(prefab, pointShoot.position, pointShoot.rotation);
-        maxTime--;
+        
 }
 }

@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130590173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 2.32, z: -0}
+  m_LocalPosition: {x: -0.46, y: 0.14, z: 1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -604,7 +604,7 @@ MonoBehaviour:
     m_Bits: 128
   timeShoot: 0
   maxTime: 50
-  bullet: {fileID: 7933369515136829665, guid: f62217f90fe2acb47b75a06416a2276f, type: 3}
+  bullet: {fileID: 7933369515136829665, guid: bf40d2ee2556335479d9913966838410, type: 3}
   pointShoot: {fileID: 130590174}
 --- !u!65 &565222170
 BoxCollider:
@@ -676,7 +676,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565222168}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.73, y: 0.91, z: 0.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -684,7 +684,7 @@ Transform:
   - {fileID: 130590174}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &588522995
 GameObject:
   m_ObjectHideFlags: 0
