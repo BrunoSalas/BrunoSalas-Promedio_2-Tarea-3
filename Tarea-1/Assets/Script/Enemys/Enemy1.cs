@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Enemy1 : Enemy,IShoot,Damage, iObserver
 {
@@ -42,7 +43,9 @@ public class Enemy1 : Enemy,IShoot,Damage, iObserver
         if (timer >= timertoShoot)
         {
             timer = 0;
-            Shoot();
+            Action<GameObject> bulletPrefab = Shoot;
+            bulletPrefab(bullet);
+            bulletPrefab.Invoke(bullet);
         }
         if (life <= 0)
         {
@@ -75,7 +78,7 @@ public class Enemy1 : Enemy,IShoot,Damage, iObserver
         }
     }
 
-    public void Shoot()
+    public void Shoot(GameObject bullet)
     {
         for (int i = 0; i < bulletCount; i++)
         {

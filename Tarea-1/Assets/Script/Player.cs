@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour, IShoot,Damage
 {
-    [SerializeField] private int life;
+    [SerializeField] public int life;
     private Rigidbody rb;
     public int damage;
     [SerializeField] private GameObject bullet;
@@ -26,7 +27,9 @@ public class Player : MonoBehaviour, IShoot,Damage
         if (timer>= timertoShoot)
         {
             timer = 0;
-            Shoot();
+            Action<GameObject> bulletPrefab = Shoot;
+            bulletPrefab(bullet);
+            bulletPrefab.Invoke(bullet);
         }
         if (life <= 0)
         {
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour, IShoot,Damage
         rb.AddForce(movement);
 
     }
-    public void Shoot()
+    public void Shoot(GameObject bullet)
     {
         Instantiate(bullet, pointShoot.position, Quaternion.identity);
     }

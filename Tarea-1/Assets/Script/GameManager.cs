@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour, ISubject
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour, ISubject
     private float progress;
     public List<iObserver> Enemy = new List<iObserver>();
     private float timer;
+    public event Action<int> onProgressionChanged;
     public float Progession { get{return progress;}}
     private void Awake()
     {

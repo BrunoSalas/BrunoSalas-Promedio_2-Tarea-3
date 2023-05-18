@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IShoot
 {
-    public abstract void Shoot();
+    public abstract void Shoot(GameObject i);
 }

@@ -2,36 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
-public class Enemy2 : Enemy, IShoot, iObserver
+public class Enemy3 : Enemy, IShoot, iObserver
 {
     public GameObject player;
     public int life;
-    [SerializeField] private float safeDistance = 5f;
+    public float moveSpeed;
+    NavMeshAgent agent;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform pointShoot;
     [SerializeField] private float timertoShoot;
-    public float moveSpeed = 1f;
     float timer;
-    public float separationDistance = 2.0f;
-    NavMeshAgent agent;
+    bool back = false;
 
+    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         GameManager.GetInstance().Attach(this);
     }
 
+    // Update is called once per frame
     void Update()
     {
-        agent.speed = moveSpeed;
         timer += Time.deltaTime;
+
         if (timer >= timertoShoot)
         {
             timer = 0;
-            Shoot();
+            Action<GameObject> bulletPrefab = Shoot;
+            bulletPrefab(bullet);
+            bulletPrefab.Invoke(bullet);
         }
         Move();
+
         if (life <= 0)
         {
             GameManager.GetInstance().Remove(this);
@@ -40,34 +45,45 @@ public class Enemy2 : Enemy, IShoot, iObserver
         }
     }
 
+    public void debug()
+    {
+        Debug.LogError(gameObject.name);
+    }
     private void FixedUpdate()
     {
         if (player != null)
         {
             transform.LookAt(player.transform, transform.forward);
         }
+        
     }
+
     public override void Move()
     {
-        if (player != null)
+        if (!back)
         {
-
-            if (Vector3.Distance(transform.position, player.transform.position) < safeDistance)
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * moveSpeed);
+            if (transform.position.z > 27)
             {
-                Vector3 direction = transform.position - player.transform.position;
-                direction = direction.normalized;
-                agent.SetDestination(transform.position + direction * 10f);
-
+                back = true;
             }
+
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Time.deltaTime * moveSpeed);
+            if (transform.position.z < -9)
+            {
+                back = false;
+            }
+                
         }
     }
 
-    public void Shoot()
+    public void Shoot(GameObject bullet)
     {
         Instantiate(bullet, pointShoot.position, pointShoot.rotation);
-
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Damage>() != null)
@@ -76,16 +92,9 @@ public class Enemy2 : Enemy, IShoot, iObserver
         }
     }
 
-    public void debug()
-    {
-        Debug.LogError(gameObject.name);
-    }
     public void Execute(ISubject subject)
     {
-        if (subject is GameManager)
-        {
-            moveSpeed = ((GameManager)subject).Progession;
-
-        }
+        moveSpeed = ((GameManager)subject).Progession;
+        life += (int)((GameManager)subject).Progession;
     }
 }
