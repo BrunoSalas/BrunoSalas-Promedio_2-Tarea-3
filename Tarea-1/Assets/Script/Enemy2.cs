@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy2 : Enemy,IShoot, iObserver
+public class Enemy2 : Enemy, IShoot, iObserver
 {
     public GameObject player;
     public int life;
@@ -11,10 +11,10 @@ public class Enemy2 : Enemy,IShoot, iObserver
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform pointShoot;
     [SerializeField] private float timertoShoot;
+    public float moveSpeed = 1f;
     float timer;
     public float separationDistance = 2.0f;
     NavMeshAgent agent;
-    private int bulletCount;
 
     void Start()
     {
@@ -24,6 +24,7 @@ public class Enemy2 : Enemy,IShoot, iObserver
 
     void Update()
     {
+        agent.speed = moveSpeed;
         timer += Time.deltaTime;
         if (timer >= timertoShoot)
         {
@@ -31,7 +32,7 @@ public class Enemy2 : Enemy,IShoot, iObserver
             Shoot();
         }
         Move();
-        if(life <= 0)
+        if (life <= 0)
         {
             GameManager.GetInstance().Remove(this);
             GameManagerUI.GetInstance().UpdateScore();
@@ -63,10 +64,8 @@ public class Enemy2 : Enemy,IShoot, iObserver
 
     public void Shoot()
     {
-        for (int i = 0; i < bulletCount; i++)
-        {
-            Instantiate(bullet, pointShoot.position, pointShoot.rotation);
-        }
+        Instantiate(bullet, pointShoot.position, pointShoot.rotation);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -83,7 +82,10 @@ public class Enemy2 : Enemy,IShoot, iObserver
     }
     public void Execute(ISubject subject)
     {
-        life += (int)((GameManager)subject).Progession;
-        bulletCount++;
+        if (subject is GameManager)
+        {
+            moveSpeed = ((GameManager)subject).Progession;
+
+        }
     }
 }
