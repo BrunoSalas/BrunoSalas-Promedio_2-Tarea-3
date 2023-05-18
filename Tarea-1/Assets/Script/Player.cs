@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IShoot,Damage
     void Start () 
     {
         rb = GetComponent<Rigidbody>();
+        GameManagerUI.GetInstance().UpdatePlayerLife(life);
 
     }
     private void Update()
@@ -52,6 +53,8 @@ public class Player : MonoBehaviour, IShoot,Damage
         if (collision.gameObject.GetComponent<Damage>() != null)
         {
            life -= collision.gameObject.GetComponent<Damage>().GetDamage();
+           GameManagerUI.GetInstance().UpdatePlayerLife(life);
+            GameManagerUI.GetInstance().RestScore();
         }
     }
 

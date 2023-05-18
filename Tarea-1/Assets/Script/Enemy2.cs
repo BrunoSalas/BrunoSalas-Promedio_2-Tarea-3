@@ -14,10 +14,12 @@ public class Enemy2 : Enemy,IShoot, iObserver
     float timer;
     public float separationDistance = 2.0f;
     NavMeshAgent agent;
+    private int bulletCount;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        GameManager.GetInstance().Attach(this);
     }
 
     void Update()
@@ -31,6 +33,8 @@ public class Enemy2 : Enemy,IShoot, iObserver
         Move();
         if(life <= 0)
         {
+            GameManager.GetInstance().Remove(this);
+            GameManagerUI.GetInstance().UpdateScore();
             Destroy(gameObject);
         }
     }
@@ -59,7 +63,10 @@ public class Enemy2 : Enemy,IShoot, iObserver
 
     public void Shoot()
     {
-        Instantiate(bullet, pointShoot.position, pointShoot.rotation);
+        for (int i = 0; i < bulletCount; i++)
+        {
+            Instantiate(bullet, pointShoot.position, pointShoot.rotation);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -76,6 +83,7 @@ public class Enemy2 : Enemy,IShoot, iObserver
     }
     public void Execute(ISubject subject)
     {
-        
+        life += (int)((GameManager)subject).Progession;
+        bulletCount++;
     }
 }

@@ -19,6 +19,7 @@ public class Enemy3 : Enemy, IShoot, iObserver
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        GameManager.GetInstance().Attach(this);
     }
 
     // Update is called once per frame
@@ -35,6 +36,8 @@ public class Enemy3 : Enemy, IShoot, iObserver
 
         if (life <= 0)
         {
+            GameManager.GetInstance().Remove(this);
+            GameManagerUI.GetInstance().UpdateScore();
             Destroy(gameObject);
         }
     }
@@ -88,6 +91,7 @@ public class Enemy3 : Enemy, IShoot, iObserver
 
     public void Execute(ISubject subject)
     {
-
+        moveSpeed = ((GameManager)subject).Progession;
+        life += (int)((GameManager)subject).Progession;
     }
 }

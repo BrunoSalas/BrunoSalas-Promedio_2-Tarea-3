@@ -43,6 +43,7 @@ public class Enemy1 : Enemy,IShoot,Damage, iObserver
         if (life <= 0)
         {
             GameManager.GetInstance().Remove(this);
+            GameManagerUI.GetInstance().UpdateScore();
             Destroy(gameObject);
         }
     }

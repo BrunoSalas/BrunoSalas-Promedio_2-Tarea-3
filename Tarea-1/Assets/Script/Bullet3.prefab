@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5594250255708992711}
   - component: {fileID: 1015412127199716511}
   - component: {fileID: 9043819450782290084}
-  - component: {fileID: -6962225539452809383}
-  m_Layer: 0
+  - component: {fileID: -595444519212573306}
+  m_Layer: 6
   m_Name: Bullet3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-6962225539452809383
+--- !u!114 &-595444519212573306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +124,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7933369515136829665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6da5e04b0ec64d49b4ce4ce5bbb6a7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 11f08fc691aac554981cc8d44380f981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
-  damage: 7
-  jugador: {fileID: 0}
+  speed: 10
+  damage: 5
+  scale: 1
+  max: {x: 0, y: 0, z: 0}

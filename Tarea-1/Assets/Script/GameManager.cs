@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour, ISubject
     public void Attach(iObserver observer)
     {
         Enemy.Add(observer);
-        observer.debug();
     }
 
     public void Remove(iObserver observer)

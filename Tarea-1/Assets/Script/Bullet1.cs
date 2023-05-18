@@ -25,10 +25,7 @@ public class Bullet1 : Bullet,iObserver
                 transform.localScale = new Vector3(scale, scale, scale);
         }
     }
-    public void debug()
-    {
-        Debug.LogError(gameObject.name);
-    }
+
     protected override void Update()
     {
         rb.velocity = transform.forward * speed;

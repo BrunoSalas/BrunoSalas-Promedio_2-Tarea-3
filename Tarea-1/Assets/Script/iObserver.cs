@@ -6,7 +6,4 @@ public interface iObserver
 {
     public abstract void Execute(ISubject subject);
 
-    public void debug();
-
-
 }
