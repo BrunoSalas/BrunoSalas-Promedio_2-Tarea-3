@@ -57,4 +57,9 @@ public class GameManagerUI : MonoBehaviour, ISubjectUI
     {
         throw new System.NotImplementedException();
     }
+    public void Coin(int i)
+    {
+        score += i;
+        Notify();
+    }
 }

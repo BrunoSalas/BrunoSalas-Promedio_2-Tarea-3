@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Tramp_2 : MonoBehaviour
+public class Trap_2 : MonoBehaviour
 { 
 public LayerMask player;
 public float timeShoot;
