@@ -14,13 +14,17 @@ public class Player : MonoBehaviour, IShoot,Damage
     float timer;
     [Range(1,100)]
     public float velocity = 5;
+    public int maxLife;
 
     void Start () 
     {
         rb = GetComponent<Rigidbody>();
         GameManagerUI.GetInstance().UpdatePlayerLife(life);
-
+        deleteLife t = (x) => { return life = maxLife; };
+        t(life);
     }
+
+    private delegate int deleteLife(int i);
     private void Update()
     {
         timer += Time.deltaTime;

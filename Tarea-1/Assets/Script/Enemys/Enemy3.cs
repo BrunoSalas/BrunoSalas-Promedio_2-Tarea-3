@@ -15,13 +15,17 @@ public class Enemy3 : Enemy, IShoot, iObserver
     [SerializeField] private float timertoShoot;
     float timer;
     bool back = false;
+    public int maxLife;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         GameManager.GetInstance().Attach(this);
+        deleteLife t = (x) => { return life = maxLife; };
+        t(life);
     }
+    private delegate int deleteLife(int i);
 
     // Update is called once per frame
     void Update()
