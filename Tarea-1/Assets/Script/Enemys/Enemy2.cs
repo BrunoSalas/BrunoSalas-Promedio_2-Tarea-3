@@ -7,6 +7,7 @@ using System;
 public class Enemy2 : Enemy, IShoot, iObserver
 {
     public GameObject player;
+    public int maxLife;
     public int life;
     [SerializeField] private float safeDistance = 5f;
     [SerializeField] private GameObject bullet;
@@ -21,6 +22,13 @@ public class Enemy2 : Enemy, IShoot, iObserver
     {
         agent = GetComponent<NavMeshAgent>();
         GameManager.GetInstance().Attach(this);
+        Func<int, int> li = DeleteLife;
+        li(maxLife);
+    }
+
+    private int DeleteLife(int j)
+    {
+        return life = j;
     }
 
     void Update()

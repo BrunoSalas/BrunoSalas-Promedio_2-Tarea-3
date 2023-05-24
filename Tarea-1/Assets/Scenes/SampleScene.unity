@@ -516,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &493509855
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -631,6 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  maxLife: 100
   life: 40
   maxDistance: 5
   moveSpeed: 1
@@ -2069,6 +2070,7 @@ MonoBehaviour:
   bullet: {fileID: 7933369515136829665, guid: 573728fd798526046968622ff6320ba7, type: 3}
   pointShoot: {fileID: 2011822644}
   timertoShoot: 1
+  maxLife: 0
 --- !u!195 &1490042944
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2229,6 +2231,7 @@ MonoBehaviour:
   pointShoot: {fileID: 1415572996}
   timertoShoot: 2
   velocity: 28.6
+  maxLife: 100
 --- !u!65 &1706140600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2510,7 +2513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1951044893
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2627,6 +2630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   player: {fileID: 1706140598}
+  maxLife: 100
   life: 30
   safeDistance: 5
   bullet: {fileID: 7933369515136829665, guid: 5d2bd2b59f4562b43a0fafb6f0bb6e19, type: 3}

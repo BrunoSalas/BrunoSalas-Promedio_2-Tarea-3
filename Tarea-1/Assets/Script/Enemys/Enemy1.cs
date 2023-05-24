@@ -6,6 +6,7 @@ using System;
 
 public class Enemy1 : Enemy,IShoot,Damage, iObserver
 {
+    public int maxLife;
     public int life;
     public float maxDistance = 5f;
     public float moveSpeed = 20f;
@@ -29,6 +30,13 @@ public class Enemy1 : Enemy,IShoot,Damage, iObserver
     private void Start()
     {
         GameManager.GetInstance().Attach(this);
+        Func<int, int> li = DeleteLife;
+        li(maxLife);
+    }
+
+    private int DeleteLife(int j)
+    {
+        return life = j;
     }
 
     public void debug()
